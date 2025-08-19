@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ChipBio — умный чип анализа крови</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root{
+      --green:#1DB954;
+      --red:#FF3B30;
+      --purple:#8A2BE2;
+      --bg:#f5f5f7;
+      --text:#111;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text)}
+    header{background:linear-gradient(135deg,var(--green) 0%,var(--red) 100%);color:#fff;padding:60px 20px;text-align:center}
+    header h1{font-size:48px;font-weight:700;margin-bottom:10px}
+    header p{font-size:20px;opacity:.9}
+    .container{max-width:1000px;margin:0 auto;padding:40px 20px}
+    section{background:#fff;border-radius:16px;padding:40px;margin-bottom:40px;box-shadow:0 4px 20px rgba(0,0,0,.05)}
+    h2{font-size:32px;margin-bottom:20px;font-weight:600}
+    .chart-wrap{max-width:600px;margin:0 auto}
+    ul{list-style:none}
+    li{padding:12px 0;border-bottom:1px solid #eee}
+    li:last-child{border:none}
+    .pill{display:inline-block;padding:6px 12px;border-radius:20px;margin:4px;font-size:14px;color:#fff}
+    .pill.green{background:var(--green)}
+    .pill.red{background:var(--red)}
+    .pill.purple{background:var(--purple)}
+    .recommendations{display:grid;gap:20px}
+    .card{background:#fafafa;border-left:6px solid var(--green);padding:20px;border-radius:8px}
+    .card.red{border-left-color:var(--red)}
+    .card.purple{border-left-color:var(--purple)}
+    .how{display:flex;flex-wrap:wrap;gap:30px;align-items:center}
+    .how img{max-width:300px;border-radius:12px}
+    .how div{flex:1 1 300px}
+    .testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
+    .testimonial{background:#fff;border:1px solid #eee;border-radius:12px;padding:24px}
+    .testimonial strong{color:var(--purple)}
+    footer{background:#111;color:#fff;text-align:center;padding:30px 20px;font-size:14px}
+    footer a{color:var(--green)}
+    form input{padding:12px 16px;border:1px solid #ccc;border-radius:6px;margin-right:6px;width:260px}
+    form button{background:var(--green);color:#fff;border:none;padding:12px 24px;border-radius:6px;cursor:pointer}
+    max-width:600px
+    {
+      header h1{font-size:36px}}
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>ChipBio</h1>
+  <p>Миниатюрный чип, который расскажет о вашем здоровье по капле крови</p>
+</header>
+
+<div class="container">
+
+  <!-- 1. График общего состояния -->
+  <section>
+    <h2>Общее состояние</h2>
+    <div class="chart-wrap">
+      <canvas id="healthChart"></canvas>
+    </div>
+  </section>
+
+  <!-- 2. Симптомы -->
+  <section>
+    <h2>Выявленные симптомы</h2>
+    <ul>
+      <li><span class="pill red">Слабость</span></li>
+      <li><span class="pill red">Быстрая утомляемость</span></li>
+      <li><span class="pill green">Нормальное давление</span></li>
+      <li><span class="pill red">Повышенный холестерин</span></li>
+    </ul>
+  </section>
+
+  <!-- 3. Витамины -->
+  <section>
+    <h2>Недостающие витамины</h2>
+    <ul>
+      <li>Витамин D <strong>— 1 000 МЕ/день</strong></li>
+      <li>Магний <strong>— 400 мг/день</strong></li>
+      <li>Витамин B12 <strong>— 2,4 мкг/день</strong></li>
+    </ul>
+  </section>
+
+  <!-- 4. Рекомендации -->
+  <section>
+    <h2>Персональные рекомендации</h2>
+    <div class="recommendations">
+      <div class="card">
+        <h3>Режим сна</h3>
+        <p>Ложитесь спать до 23:00 — это улучшит восстановление клеток.</p>
+      </div>
+      <div class="card red">
+        <h3>Физическая активность</h3>
+        <p>Добавьте 30 минут кардио 3 раза в неделю для снижения холестерина.</p>
+      </div>
+      <div class="card purple">
+        <h3>Питание</h3>
+        <p>Включите в рак лосось 2 раза в неделю и шпинат ежедневно для восполнения омега-3 и магния.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5.
+
+
+нительно: как это работает -->
+  <section class="how">
+    <div>
+      <h2>Как это работает</h2>
+      <ol>
+        <li>Закрепите чип на коже — он соберёт микрообъём крови.</li>
+        <li>Данные мгновенно анализируются ИИ-моделью в облаке.</li>
+        <li>Получите отчёт и рекомендации в приложении за 60 секунд.</li>
+      </ol>
+    </div>
+    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267e5?auto=format&fit=crop&w=600&q=60" alt="chip">
+  </section>
+
+  <!-- 5. Отзывы -->
+  <section>
+    <h2>Отзывы</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p>«ChipBio помог выявить дефицит B12 и устранить хроническую усталость за 3 недели!»</p>
+        <strong>— Анна, 34 года</strong>
+      </div>
+      <div class="testimonial">
+        <p>«График состояния мотивирует следить за здоровьем каждый день.»</p>
+        <strong>— Дмитрий, 29 лет</strong>
+      </div>
+      <div class="testimonial">
+        <p>«Не надо сдавать кровь в клинике — экономлю 2 часа в неделю.»</p>
+        <strong>— Мария, 42 года</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Подписка -->
+  <section>
+    <h2>Оставьте email и получите ранний доступ</h2>
+    <form>
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit">Получить доступ</button>
+    </form>
+  </section>
+
+</div>
+
+<footer>
+  © 2025 ChipBio • <a href="#">Политика конфиденциальности</a>
+</footer>
+
+<script>
+  // График общего состояния
+  const ctx = document.getElementById('healthChart');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+      datasets: [{
+        label: 'Общее состояние (0-100)',
+        data: [72, 68, 75, 82, 78, 85, 88],
+        borderColor: '#1DB954',
+        backgroundColor: 'rgba(29,185,84,0.1)',
+        tension: 0.4,
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins:{legend:{display:false}},
+      scales:{
+        y:{min:50,max:100,ticks:{color:'#555'},grid:{color:'#e5e5e5'}},
+        x:{ticks:{color:'#555'},grid:{display:false}}
+      }
+    }
+  });
+</script>
+
+</body>
+</html> 
