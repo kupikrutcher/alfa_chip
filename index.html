@@ -44,9 +44,17 @@
     footer a{color:var(--green)}
     form input{padding:12px 16px;border:1px solid #ccc;border-radius:6px;margin-right:6px;width:260px}
     form button{background:var(--green);color:#fff;border:none;padding:12px 24px;border-radius:6px;cursor:pointer}
-    max-width:600px
-    {
-      header h1{font-size:36px}}
+    /* --- ОКРУЖЕНИЕ --- */
+    .env-widget{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start}
+    .env-card{flex:1 1 260px}
+    .gauge{position:relative;width:120px;height:120px;margin:0 auto 15px}
+    .gauge svg{width:100%;height:100%}
+    .gauge text{font-size:24px;font-weight:700;text-anchor:middle;dominant-baseline:middle;fill:var(--text)}
+    .tips ul{margin-top:10px}
+    .tips li{padding:8px 0}
+    @media(max-width:600px){
+      header h1{font-size:36px}
+    }
   </style>
 </head>
 <body>
@@ -106,82 +114,41 @@
     </div>
   </section>
 
-  <!-- 5.
-
-
-нительно: как это работает -->
-  <section class="how">
-    <div>
-      <h2>Как это работает</h2>
-      <ol>
-        <li>Закрепите чип на коже — он соберёт микрообъём крови.</li>
-        <li>Данные мгновенно анализируются ИИ-моделью в облаке.</li>
-        <li>Получите отчёт и рекомендации в приложении за 60 секунд.</li>
-      </ol>
-    </div>
-    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267e5?auto=format&fit=crop&w=600&q=60" alt="chip">
-  </section>
-
-  <!-- 5. Отзывы -->
-  <section>
-    <h2>Отзывы</h2>
-    <div class="testimonials">
-      <div class="testimonial">
-        <p>«ChipBio помог выявить дефицит B12 и устранить хроническую усталость за 3 недели!»</p>
-        <strong>— Анна, 34 года</strong>
+  <!-- 5. Окружающая среда + советы -->
+  <section id="env">
+    <h2>Ваше окружение и советы</h2>
+    <div class="env-widget">
+      <!-- Качество воздуха -->
+      <div class="env-card">
+        <h3>Качество воздуха</h3>
+        <div class="gauge">
+          <svg viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#e5e5e5" stroke-width="10"/>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#FF3B30" stroke-width="10"
+                    stroke-dasharray="235.6" stroke-dashoffset="141"
+                    stroke-linecap="round" transform="rotate(-90 60 60)"/>
+            <text x="60" y="60">72</text>
+          </svg>
+        </div>
+        <p>Умеренно загрязнённый воздух</p>
       </div>
-      <div class="testimonial">
-        <p>«График состояния мотивирует следить за здоровьем каждый день.»</p>
-        <strong>— Дмитрий, 29 лет</strong>
+
+      <!-- УФ-индекс -->
+      <div class="env-card">
+        <h3>УФ-индекс</h3>
+        <div class="gauge">
+          <svg viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#e5e5e5" stroke-width="10"/>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#8A2BE2" stroke-width="10"
+                    stroke-dasharray="235.6" stroke-dashoffset="165"
+                    stroke-linecap="round" transform="rotate(-90 60 60)"/>
+            <text x="60" y="60">5.7</text>
+          </svg>
+        </div>
+        <p>Умеренный риск — используй SPF 30</p>
       </div>
-      <div class="testimonial">
-        <p>«Не надо сдавать кровь в клинике — экономлю 2 часа в неделю.»</p>
-        <strong>— Мария, 42 года</strong>
-      </div>
-    </div>
-  </section>
 
-  <!-- 5. Подписка -->
-  <section>
-    <h2>Оставьте email и получите ранний доступ</h2>
-    <form>
-      <input type="email" placeholder="your@email.com" required>
-      <button type="submit">Получить доступ</button>
-    </form>
-  </section>
-
-</div>
-
-<footer>
-  © 2025 ChipBio • <a href="#">Политика конфиденциальности</a>
-</footer>
-
-<script>
-  // График общего состояния
-  const ctx = document.getElementById('healthChart');
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
-      datasets: [{
-        label: 'Общее состояние (0-100)',
-        data: [72, 68, 75, 82, 78, 85, 88],
-        borderColor: '#1DB954',
-        backgroundColor: 'rgba(29,185,84,0.1)',
-        tension: 0.4,
-        fill: true
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins:{legend:{display:false}},
-      scales:{
-        y:{min:50,max:100,ticks:{color:'#555'},grid:{color:'#e5e5e5'}},
-        x:{ticks:{color:'#555'},grid:{display:false}}
-      }
-    }
-  });
-</script>
-
-</body>
-</html> 
+      <!-- Советы -->
+      <div class="env-card tips">
+        <h3>Советы на основе окружения</h3>
+        <ul>
